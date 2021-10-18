@@ -1,10 +1,11 @@
 // Sass task: compiles the style.scss file into style.css
 const { src, dest} = require('gulp');
 const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const sourcemaps = require('gulp-sourcemaps');
-const sass = require('gulp-sass');
+// const autoprefixer = require('autoprefixer');
+// const cssnano = require('cssnano');
+// const sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass')(require('sass'));
+
 const concat = require('gulp-concat');
 const rebaseUrls = require('gulp-css-url-fix');
 const cleanCSS = require('gulp-clean-css');
@@ -29,9 +30,13 @@ const bundleCSS = (sources, filename, folder = "", disableRebase = false) => {
             ? rebaseUrls()
             : gutil.noop();
     };
+    // const plugins = [
+    //     autoprefixer({browsers: ['last 1 version']}),
+    //     cssnano()
+    // ];
     return src(sources)
-                .pipe(sass())
-                .pipe(postcss([ autoprefixer(), cssnano() ]))
+                .pipe(sass.sync().on('error', sass.logError))
+                .pipe(postcss([require('autoprefixer')]))
                 // .pipe(sourcemaps.init())
                 //.pipe(rebaseIfNeeded())
                 // .pipe(sourcemaps.write('.')) 

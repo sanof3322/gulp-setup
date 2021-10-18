@@ -19,13 +19,17 @@ const reload = (done) => {
 };
 const serve = () => {   
     browserSync.init({
-       logLevel: "silent", //to disable browserSync snippet message
-       socket: {
-           domain: "localhost:3000"
-       }
+        logLevel: "silent", //to disable browserSync snippet message
+    //    socket: {
+    //        domain: "localhost:3000"
+    //    },
+    //    proxy: "local.dev"
+        server: {
+            baseDir: "app",
+        },
    });
    console.log("watching files for changes");        
-   watch(['./app/src/styles.scss', './app/src/paralax.css'], series(css, reload));    
+   watch(['./app/src/styles.scss'], series(css, reload));    
    
    watch('./app/index.html', reload);
 
