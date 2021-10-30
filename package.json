@@ -54,6 +54,8 @@
     "regenerator-runtime": "^0.13.7",
     "sass": "^1.43.2",
     "string-length": "^4.0.2",
-    "text-table": "^0.2.0"
+    "text-table": "^0.2.0",
+    "webpack": "^5.61.0",
+    "webpack-stream": "^7.0.0"
   }
 }
