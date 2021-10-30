@@ -29,12 +29,12 @@ const serve = () => {
         },
    });
    console.log("watching files for changes");        
-   watch(['./app/src/styles.scss'], series(css, reload));    
+   watch(['./src/styles.scss'], series(css, reload));    
    
    watch('./app/index.html', reload);
 
    //watching all js files except ones in node_modules and Bundles folders
-   watch(['./app/src/app-source.js'], series(app, reload));
+   watch(['./src/app-source.js'], series(app, reload));
 }
 exports.serve = serve;
 
