@@ -1,5 +1,7 @@
-const app = {
-    loginTPL(){
+import { createRouter } from "routerjs";
+
+window.app = {
+    loginTPL() {
         return /*html*/`
         <div class="row">
             <div class="col-md-3"></div>
@@ -12,13 +14,36 @@ const app = {
                     </div>
                 </div>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <button class="btn btn-primary" onclick="router.navigate('/cd')">Go to CD</button>
+            </div>
         </div>
         `;
     },
-    init(){
+    init() {
         $("#main-content").html(this.loginTPL());
     }
 };
 
-app.init();
+window.router = createRouter()
+    // Define the route matching a path with a callback
+    .get('/', (/*req, context*/) => {
+        app.init();
+
+    })
+    .get('/cd', (/*req, context*/) => {
+    //    window.location = "https://cd.classyweb.net";
+        alert("cd")
+    })
+    .error('*', (err, context) => {
+        alert("error");
+    })
+    .error(404, (err, context) => {
+        console.log(`Route ${context.path} not found`);
+    })
+
+    // Calling "run" will execute handlers immediately for the current url.
+    // You can avoid calling it and wait for the next route change instead.
+    .run();
+
+

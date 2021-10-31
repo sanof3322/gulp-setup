@@ -23,15 +23,11 @@ const bundleMe = (sources, filename, folder = '') => {
         .pipe(sourcemaps.init())
         .pipe(jshint(jshintOptions))
         .pipe(jshint.reporter(reporterStylish, { verbose: true, filter: true })) //filter: false - reports all warnings and errors
-        //.pipe(jshint.reporter('fail'))
         .pipe(webpack({
             mode: 'production'
             // Any configuration options...
           }))
         .pipe(babel(babelPresets))
-        //webpack doesn't work with require.js, 
-        //so either use webpack or require
-        
         .pipe(concat(filename))
         .pipe(uglifyIfNeeded())
         .pipe(dest(`./app/${folder}`));

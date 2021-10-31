@@ -16,7 +16,8 @@
     "bootstrap-toggle": "^2.2.2",
     "font-awesome": "4.7.0",
     "jquery": "^3.6.0",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.15.0",
+    "routerjs": "^2.4.5"
   },
   "comments": "DON'T DELETE popper.js and jquery since they are bootstrap dependencies",
   "devDependencies": {
